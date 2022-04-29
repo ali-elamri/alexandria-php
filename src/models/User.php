@@ -1,7 +1,5 @@
 <?php
 
-require "./core/Model.php";
-
 class User extends Model
 {
   protected $table = "users";

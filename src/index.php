@@ -1,7 +1,6 @@
 <?php
 
-require_once "./constants.php";
-require_once "./common/Helpers.php";
-require "./Core/Application.php";
+require_once "./vendor/autoload.php";
+
 
 (new Application())->run();

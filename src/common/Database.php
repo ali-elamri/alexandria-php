@@ -1,8 +1,5 @@
 <?php
 
-require './common/Config.php';
-require './common/JoinQueries.php';
-
 class Database
 {
   use JoinQueries;

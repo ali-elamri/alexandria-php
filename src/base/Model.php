@@ -1,7 +1,5 @@
 <?php
 
-require("./common/Database.php");
-
 class Model
 {
   private static $_model;

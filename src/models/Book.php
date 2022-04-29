@@ -1,7 +1,5 @@
 <?php
 
-require "./core/Model.php";
-
 class Book extends Model
 {
   protected $table = "books";

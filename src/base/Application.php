@@ -1,9 +1,5 @@
 <?php
 
-require "./common/Redirect.php";
-require "./controllers/HomeController.php";
-require "./controllers/UsersController.php";
-
 class Application
 {
   private $_class = DEFAULT_CONTROLLER;
@@ -18,7 +14,7 @@ class Application
       $this->_getClass();
       $this->_getMethod();
       $this->_getParams();
-    } catch (Exception $e) {
+    } catch (\Exception $e) {
       Redirect::to(404);
     }
   }

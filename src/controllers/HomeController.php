@@ -1,9 +1,11 @@
 <?php
 
-class HomeController
+class HomeController extends Controller
 {
   public function index()
   {
-    echo "Welcome to " . APP_NAME;
+    $this->view->render("home/index", [
+      "title" => "Home"
+    ]);
   }
 }

@@ -1,0 +1,13 @@
+{
+  "autoload": {
+    "files": [
+      "constants.php"
+    ],
+    "classmap": [
+      "common",
+      "base",
+      "models",
+      "controllers"
+    ]
+  }
+}
