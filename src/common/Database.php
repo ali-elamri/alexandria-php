@@ -25,6 +25,7 @@ class Database
     try {
       $dsn = "mysql:host={$host};port={$port};dbname={$name};charset={$charset}";
       $this->_pdo = new PDO($dsn, $user, $password, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ
       ]);
     } catch (PDOException $e) {
@@ -41,7 +42,7 @@ class Database
     return (self::$_database);
   }
 
-  public function query($query, $data = [])
+  public function query($query, $data = [], $isSelect = false)
   {
     $this->_rowCount = 0;
     $this->_results = [];
@@ -55,7 +56,8 @@ class Database
       }
 
       if ($statement->execute()) {
-        $this->_results = $statement->fetchAll();
+        if ($isSelect)
+          $this->_results = $statement->fetchAll();
         $this->_rowCount = $statement->rowCount();
       }
     } catch (PDOException $e) {
@@ -81,11 +83,11 @@ class Database
         $field = $where[0];
         $data = [":value" => $where[2]];
 
-        return $this->query("SELECT $columns FROM {$table} WHERE {$field} {$operator} :value", $data)->results();
+        return $this->query("SELECT $columns FROM {$table} WHERE {$field} {$operator} :value", $data, true);
       }
     }
 
-    return $this->query("SELECT $columns FROM $table")->results();
+    return $this->query("SELECT $columns FROM $table", true);
   }
 
   public function insert($table, $data)
@@ -137,8 +139,13 @@ class Database
     return $this->_rowCount;
   }
 
-  public function results()
+  public function results($key = null)
   {
-    return $this->_results;
+    return (isset($key) ? $this->_results[$key] : $this->_results);
+  }
+
+  public function first()
+  {
+    return ($this->results(0));
   }
 }

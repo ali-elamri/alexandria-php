@@ -54,10 +54,10 @@ trait JoinQueries
         $field = $where[0];
         $data = [":value" => $where[2]];
 
-        return $this->query("SELECT $columns FROM {$table} $joinStatement WHERE {$field} {$operator} :value", $data)->results();
+        return $this->query("SELECT $columns FROM {$table} $joinStatement WHERE {$field} {$operator} :value", $data, true);
       }
     }
 
-    return $this->query("SELECT $columns FROM $table $joinStatement")->results();
+    return $this->query("SELECT $columns FROM $table $joinStatement", [], true);
   }
 }
