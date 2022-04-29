@@ -35,4 +35,12 @@ class View
   {
     return (htmlentities($string, ENT_QUOTES, "UTF-8", false));
   }
+
+  public function link($path = "")
+  {
+    if (is_array($path)) {
+      return (APP_URL . implode("/", $path));
+    }
+    return (APP_URL . $path);
+  }
 }

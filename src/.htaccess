@@ -1,10 +1,7 @@
-RewriteEngine On
+Options -Indexes
+<IfModule mod_rewrite.c>
+    RewriteEngine on
 
-RewriteCond %{THE_REQUEST} /public/([^\s?]*) [NC]
-RewriteRule ^ %1 [L,NE,R=302]
-RewriteRule ^((?!public/).*)$ public/$1 [L,NC]
-
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-l
-RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
+    RewriteRule ^$   public/   [L]
+    RewriteRule (.*) public/$1 [L]
+</IfModule>
