@@ -1,5 +1,12 @@
 <?php
 
+namespace App\Base;
+
+use \ReflectionClass;
+use \ReflectionMethod;
+use App\Common\Redirect;
+use App\Common\Helpers;
+
 class Application
 {
   private $_class = DEFAULT_CONTROLLER;
@@ -29,9 +36,9 @@ class Application
 
   private function _getClass()
   {
-    if (isset($this->_params[0]) and !empty($this->_params[0])) {
-      $this->_class = ucfirst(strtolower($this->_params[0])) . "Controller";
-      unset($this->_params[0]);
+    if (isset($this->_params[1]) and !empty($this->_params[1])) {
+      $this->_class = CONTROLLERS_NAMESPACE . ucfirst(strtolower($this->_params[1])) . "Controller";
+      unset($this->_params[1]);
     }
     if (!class_exists($this->_class)) {
       Helpers::error("The controller {$this->_class} does not exist.");
@@ -41,9 +48,9 @@ class Application
 
   private function _getMethod()
   {
-    if (isset($this->_params[1]) and !empty($this->_params[1])) {
-      $this->_method = $this->_params[1];
-      unset($this->_params[1]);
+    if (isset($this->_params[2]) and !empty($this->_params[2])) {
+      $this->_method = $this->_params[2];
+      unset($this->_params[2]);
     }
 
     // Check to ensure the requested controller method exists.

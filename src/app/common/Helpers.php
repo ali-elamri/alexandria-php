@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Common;
+
 /**
  * The helpers class provides a set of helper functions.
  * 

@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Base;
+
+use App\Common\Helpers;
+
 class View
 {
   public function addData(array $data)

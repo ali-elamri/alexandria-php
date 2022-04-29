@@ -1,13 +1,7 @@
 {
   "autoload": {
-    "files": [
-      "constants.php"
-    ],
-    "classmap": [
-      "common",
-      "base",
-      "models",
-      "controllers"
-    ]
+    "psr-4": {
+      "App\\": "app"
+    }
   }
 }

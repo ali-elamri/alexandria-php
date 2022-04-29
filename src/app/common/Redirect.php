@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Common;
+
 class Redirect
 {
   public static function to($location = "")
