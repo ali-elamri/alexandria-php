@@ -6,7 +6,7 @@
  */
 class Config
 {
-  private static array $_config;
+  private static $_config;
 
   /**
    * The load function loads the config file and stores its contents
@@ -15,10 +15,8 @@ class Config
    * These can be fetched by used the get() method and providing the
    * name of the config variable as a parameter as 'module.param'.
    * - e.g. $config->get('database.host');
-   * @param string $key
-   * @return array
    */
-  public static function get(string $key)
+  public static function get($key)
   {
     // Load configuration file if it hasn't already been loaded
     if (empty(self::$_config)) {
